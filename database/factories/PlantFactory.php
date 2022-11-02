@@ -22,7 +22,7 @@ class PlantFactory extends Factory
             'category' => $this->faker->text(50),
             'origin' => $this->faker->word,
             'climate' => $this->faker->word,
-            'maintanence_rating' => $this->faker->numberBetween(1, 10),
+            'maintenance_rating' => $this->faker->numberBetween(1, 10),
             'description' => $this->faker->text(100),
 
         ];

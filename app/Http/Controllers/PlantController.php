@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Plant;
 use Illuminate\Http\Request;
+use Illuminate\Http\Client\Response;
+use App\Http\Resources\PlantResource;
+use App\Http\Resources\PlantCollection;
 
 class PlantController extends Controller
 {
@@ -14,7 +17,7 @@ class PlantController extends Controller
      */
     public function index()
     {
-        //
+        return new PlantCollection(Plant::all());
     }
 
     /**
@@ -25,7 +28,11 @@ class PlantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $plant = Plant::create($request->only([
+            'name', 'category', 'origin', 'climate', 'maintenance_rating', 'description'
+        ]));
+
+        return new PlantResource($plant);
     }
 
     /**
@@ -36,7 +43,7 @@ class PlantController extends Controller
      */
     public function show(Plant $plant)
     {
-        //
+        return new PlantResource($plant);
     }
 
     /**
@@ -48,7 +55,11 @@ class PlantController extends Controller
      */
     public function update(Request $request, Plant $plant)
     {
-        //
+        $plant->update($request->only([
+            'name', 'category', 'origin', 'climate', 'maintenance_rating', 'description'
+        ]));
+
+        return new PlantResource($plant);
     }
 
     /**
@@ -59,6 +70,7 @@ class PlantController extends Controller
      */
     public function destroy(Plant $plant)
     {
-        //
+        $plant->delete();
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

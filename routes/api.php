@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\PlantController;
-use App\Http\Resources\PlantCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Resources\PlantCollection;
+use App\Http\Controllers\PlantController;
+use App\Http\Controllers\ClimateController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::apiResource('/plants', PlantController::class);
+Route::resource('/categories', CategoryController::class)->only(['index', 'show']);
+Route::resource('/climates', ClimateController::class)->only(['index', 'show']);

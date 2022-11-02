@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Plant extends Model
+class Category extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'category', 'origin', 'climate', 'maintenance_rating', 'description'];
+    protected $fillable = ['title', 'description'];
     //protected $guarded = [];
 }
